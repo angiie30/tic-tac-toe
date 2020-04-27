@@ -1,5 +1,6 @@
 import React from "react";
 import Board from "./Board";
+import TimeTravel from "./TimeTravel";
 import calculateWinner from "./Winner";
 
 class Game extends React.Component {
@@ -48,20 +49,6 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
-      return (
-        <div key={move} className="list-group">
-          <a
-            className="list-group-item list-group-item-action text-center"
-            onClick={() => this.jumpTo(move)}
-          >
-            {desc}
-          </a>
-        </div>
-      );
-    });
-
     let status;
     if (winner) {
       status = "Winner: " + winner;
@@ -78,25 +65,12 @@ class Game extends React.Component {
                 <div className="card-text">{status}</div>
               </div>
             </div>
-            <div className="game-board card box-shadown mt-3">
-              <div className="card-body">
-                <Board
-                  squares={current.squares}
-                  onClick={(i) => this.handleClick(i)}
-                />
-              </div>
-            </div>
+            <Board
+              squares={current.squares}
+              onClick={(i) => this.handleClick(i)}
+            />
           </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <div className="card box-shadown mt-3">
-              <div className="card-body">
-                <div className="card-title">
-                  <h5>Time Travel</h5>
-                </div>
-              </div>
-              {moves}
-            </div>
-          </div>
+          <TimeTravel value={history} onClick={(step) => this.jumpTo(step)} />
         </div>
       </div>
     );
