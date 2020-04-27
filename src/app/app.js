@@ -2,11 +2,13 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  //Route,
   // Link,
   // useRouteMatch,
   // useParams,
 } from "react-router-dom";
+import AuthGuard from "./guard/auth-guard";
+import UnAuthGuard from "./guard/unauth-guard";
 
 import Game from "./game/game";
 import NavBar from "../shared/NavBar";
@@ -17,15 +19,15 @@ export default function App() {
     <Router>
       <NavBar />
       <Switch>
-        <Route path="/game">
+        <AuthGuard path="/game">
           <Game />
-        </Route>
-        <Route path="/">
+        </AuthGuard>
+        <UnAuthGuard path="/">
           <Login />
-        </Route>
-        <Route path="/login">
+        </UnAuthGuard>
+        <UnAuthGuard path="/login">
           <Login />
-        </Route>
+        </UnAuthGuard>
       </Switch>
     </Router>
   );

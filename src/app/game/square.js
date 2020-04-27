@@ -3,6 +3,7 @@ import React from "react";
 function Square(props) {
   return (
     <button
+      type="button"
       className={
         "square btn btn-lg btn-block " +
         (props.value == null

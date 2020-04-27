@@ -7,6 +7,7 @@ class Login extends React.Component {
     this.state = {
       firstPlayer: "",
       secondPlayer: "",
+      showAlert: false,
       redirect: false,
     };
 
@@ -33,6 +34,12 @@ class Login extends React.Component {
     this.setState(state);
   };
 
+  setShowAlert = () => {
+    let state = { ...this.state };
+    state.showAlert = true;
+    this.setState(state);
+  };
+
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to="/game" />;
@@ -43,8 +50,18 @@ class Login extends React.Component {
     localStorage.setItem("firstPlayer", this.state.firstPlayer);
     localStorage.setItem("secondPlayer", this.state.secondPlayer);
 
-    if (this.state.firstPlayer !== "" && this.state.secondPlayer !== "")
-      this.setRedirect();
+    if (this.state.firstPlayer === "" && this.state.secondPlayer === "")
+      this.setShowAlert();
+    else this.setRedirect();
+  }
+
+  alert() {
+    if (this.state.showAlert)
+      return (
+        <div className="alert alert-danger" role="alert">
+          First Player Name and Second Player Name is required!
+        </div>
+      );
   }
 
   render() {
@@ -54,6 +71,7 @@ class Login extends React.Component {
           <div className="col-12">
             <div className="card box-shadown mt-3">
               <div className="card-body">
+                {this.alert()}
                 <form>
                   <div className="form-group">
                     <label>First Player Name</label>
@@ -79,6 +97,7 @@ class Login extends React.Component {
                   </div>
                   {this.renderRedirect()}
                   <button
+                    type="button"
                     className="btn btn-secondary btn-block text-white"
                     onClick={this.save}
                   >

@@ -8,6 +8,7 @@ function TimeTravel(props) {
     return (
       <div key={move} className="list-group">
         <button
+          type="button"
           className="list-group-item list-group-item-action pointer"
           onClick={() => props.onClick(move)}
         >
