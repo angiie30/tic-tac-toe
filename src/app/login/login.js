@@ -18,14 +18,12 @@ class Login extends React.Component {
   setFirstPlayer(event) {
     let state = { ...this.state };
     state.firstPlayer = event.target.value;
-    console.log(state);
     this.setState(state);
   }
 
   setSecondPlayer(event) {
     let state = { ...this.state };
     state.secondPlayer = event.target.value;
-    console.log(state);
     this.setState(state);
   }
 

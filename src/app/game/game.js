@@ -56,7 +56,6 @@ class Game extends React.Component {
 
   isAllChecked(squares) {
     let isAllChecked = true;
-    console.log(squares);
     squares.forEach((square) => {
       if (square == null) {
         isAllChecked = false;
