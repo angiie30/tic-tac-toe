@@ -11,23 +11,11 @@ class Board extends React.Component {
     };
   }
 
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? "X" : "O";
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
-  }
-
   renderSquare(i) {
     return (
       <Square
-        value={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
+        value={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)}
       />
     );
   }
@@ -43,7 +31,6 @@ class Board extends React.Component {
 
     return (
       <div>
-        <h5 className="status mt-3">{status}</h5>
         <div className="board-row row mt-3">
           <div className="col">{this.renderSquare(0)}</div>
           <div className="col">{this.renderSquare(1)}</div>
