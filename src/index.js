@@ -8,9 +8,11 @@ import "./custom.scss";
 
 import "./index.css";
 import Game from "./Game";
+import NavBar from "./NavBar";
 
 ReactDOM.render(
   <React.StrictMode>
+    <NavBar />
     <Game />
   </React.StrictMode>,
   document.getElementById("root")
