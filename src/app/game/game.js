@@ -1,7 +1,7 @@
 import React from "react";
-import Board from "./Board";
-import TimeTravel from "./TimeTravel";
-import calculateWinner from "./Winner";
+import Board from "./board";
+import TimeTravel from "./time-travel";
+import calculateWinner from "./winner";
 
 class Game extends React.Component {
   constructor(props) {

@@ -6,13 +6,12 @@ import * as serviceWorker from "./serviceWorker";
 import "./assets/scss/custom.scss";
 
 import "./index.css";
-import Game from "./Game/Index";
-import NavBar from "./shared/NavBar";
+
+import App from "./app/app";
 
 ReactDOM.render(
   <React.StrictMode>
-    <NavBar />
-    <Game />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

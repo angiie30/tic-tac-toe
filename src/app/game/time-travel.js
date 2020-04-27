@@ -1,7 +1,6 @@
 import React from "react";
 
 function TimeTravel(props) {
-  console.log(props.value);
   const history = props.value;
 
   const moves = history.map((step, move) => {

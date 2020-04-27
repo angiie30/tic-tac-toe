@@ -1,6 +1,5 @@
 import React from "react";
-import Square from "./Square";
-import calculateWinner from "./Winner";
+import Square from "./square";
 
 class Board extends React.Component {
   constructor(props) {
@@ -21,14 +20,6 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = "Winner: " + winner;
-    } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
-    }
-
     return (
       <div className="game-board card box-shadown mt-3">
         <div className="card-body">
