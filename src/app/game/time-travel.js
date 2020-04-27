@@ -7,12 +7,12 @@ function TimeTravel(props) {
     const desc = move ? "Go to move #" + move : "Go to game start";
     return (
       <div key={move} className="list-group">
-        <a
+        <button
           className="list-group-item list-group-item-action text-center"
           onClick={() => props.onClick(move)}
         >
           {desc}
-        </a>
+        </button>
       </div>
     );
   });

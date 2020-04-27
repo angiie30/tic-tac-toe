@@ -14,6 +14,8 @@ class Game extends React.Component {
       ],
       stepNumber: 0,
       xIsNext: true,
+      firstPlayer: this.getFirstPlayerName(),
+      secondPlayer: this.getSecondPlayerName(),
     };
   }
 
@@ -44,6 +46,27 @@ class Game extends React.Component {
     });
   }
 
+  getFirstPlayerName() {
+    return localStorage.getItem("firstPlayer");
+  }
+
+  getSecondPlayerName() {
+    return localStorage.getItem("secondPlayer");
+  }
+
+  isAllChecked(squares) {
+    let isAllChecked = true;
+    console.log(squares);
+    squares.forEach((square) => {
+      if (square == null) {
+        isAllChecked = false;
+        return false;
+      }
+    });
+
+    return isAllChecked;
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -51,9 +74,16 @@ class Game extends React.Component {
 
     let status;
     if (winner) {
-      status = "Winner: " + winner;
+      status =
+        (winner.toString().toLowerCase() === "x"
+          ? this.state.firstPlayer
+          : this.state.secondPlayer) + " Winner!";
+    } else if (this.isAllChecked(current.squares)) {
+      status = "Game Over!";
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+      status =
+        "Next player is " +
+        (this.state.xIsNext ? this.state.firstPlayer : this.state.secondPlayer);
     }
 
     return (
@@ -62,7 +92,19 @@ class Game extends React.Component {
           <div className="col-sm-12 col-md-12 col-lg-8">
             <div className="card box-shadown mt-3">
               <div className="card-body">
-                <div className="card-text">{status}</div>
+                <div className="card-text text-center">
+                  <h4
+                    className={
+                      status.toString().includes("Winner")
+                        ? "text-success"
+                        : status.toString().includes("Game Over")
+                        ? "text-danger"
+                        : ""
+                    }
+                  >
+                    {status}
+                  </h4>
+                </div>
               </div>
             </div>
             <Board
