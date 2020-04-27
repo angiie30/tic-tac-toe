@@ -51,9 +51,14 @@ class Game extends React.Component {
     const moves = history.map((step, move) => {
       const desc = move ? "Go to move #" + move : "Go to game start";
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
+        <div key={move} className="list-group">
+          <a
+            className="list-group-item list-group-item-action text-center"
+            onClick={() => this.jumpTo(move)}
+          >
+            {desc}
+          </a>
+        </div>
       );
     });
 
@@ -66,15 +71,32 @@ class Game extends React.Component {
 
     return (
       <div className="game container">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
+        <div className="row">
+          <div className="col-sm-12 col-md-12 col-lg-8">
+            <div className="card box-shadown mt-3">
+              <div className="card-body">
+                <div className="card-text">{status}</div>
+              </div>
+            </div>
+            <div className="game-board card box-shadown mt-3">
+              <div className="card-body">
+                <Board
+                  squares={current.squares}
+                  onClick={(i) => this.handleClick(i)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col-sm-12 col-md-12 col-lg-4">
+            <div className="card box-shadown mt-3">
+              <div className="card-body">
+                <div className="card-title">
+                  <h5>Time Travel</h5>
+                </div>
+              </div>
+              {moves}
+            </div>
+          </div>
         </div>
       </div>
     );
