@@ -43,21 +43,21 @@ class Board extends React.Component {
 
     return (
       <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+        <h5 className="status mt-3">{status}</h5>
+        <div className="board-row row mt-3">
+          <div className="col">{this.renderSquare(0)}</div>
+          <div className="col">{this.renderSquare(1)}</div>
+          <div className="col">{this.renderSquare(2)}</div>
         </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
+        <div className="board-row row mt-3">
+          <div className="col">{this.renderSquare(3)}</div>
+          <div className="col">{this.renderSquare(4)}</div>
+          <div className="col">{this.renderSquare(5)}</div>
         </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+        <div className="board-row row mt-3">
+          <div className="col">{this.renderSquare(6)}</div>
+          <div className="col">{this.renderSquare(7)}</div>
+          <div className="col">{this.renderSquare(8)}</div>
         </div>
       </div>
     );
