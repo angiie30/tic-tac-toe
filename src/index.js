@@ -3,12 +3,11 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
 //css
-import "bootstrap/dist/css/bootstrap.css";
-import "./custom.scss";
+import "./assets/scss/custom.scss";
 
 import "./index.css";
-import Game from "./Game";
-import NavBar from "./NavBar";
+import Game from "./Game/Index";
+import NavBar from "./shared/NavBar";
 
 ReactDOM.render(
   <React.StrictMode>
