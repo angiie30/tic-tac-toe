@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import isAuthenticated from "./auth";
 
-function AuthGuard({ children, ...rest }) {
+export default function AuthGuard({ children, ...rest }) {
   return (
     <Route
       {...rest}
@@ -21,5 +21,3 @@ function AuthGuard({ children, ...rest }) {
     />
   );
 }
-
-export default AuthGuard;

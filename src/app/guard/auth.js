@@ -1,4 +1,4 @@
-function isAuthenticated() {
+export default function isAuthenticated() {
   const firstPlayerName = localStorage.getItem("firstPlayer");
   const secondPlayerName = localStorage.getItem("secondPlayer");
 
@@ -9,5 +9,3 @@ function isAuthenticated() {
     secondPlayerName !== ""
   );
 }
-
-export default isAuthenticated;

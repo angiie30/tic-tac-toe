@@ -1,121 +1,116 @@
-import React from "react";
+import React, { useState } from "react";
 import Board from "./board";
 import TimeTravel from "./time-travel";
 import calculateWinner from "./winner";
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null),
-        },
-      ],
-      stepNumber: 0,
-      xIsNext: true,
-      firstPlayer: this.getFirstPlayerName(),
-      secondPlayer: this.getSecondPlayerName(),
-    };
+const handleClick = (
+  index,
+  history,
+  xIsNext,
+  stepNumber,
+  setHistory,
+  setStepNumber,
+  setXIsNext
+) => {
+  const playHistory = history.slice(0, stepNumber + 1);
+  const current = playHistory[playHistory.length - 1];
+  const squares = current.squares.slice();
+
+  if (calculateWinner(squares) || squares[index]) {
+    return;
   }
 
-  handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
+  squares[index] = xIsNext ? "X" : "O";
 
-    if (calculateWinner(squares) || squares[i]) {
-      return;
+  setHistory(
+    playHistory.concat([
+      {
+        squares: squares,
+      },
+    ])
+  );
+  setStepNumber(playHistory.length);
+  setXIsNext(!xIsNext);
+};
+
+const jumpTo = (step, setStepNumber, setXIsNext) => {
+  setStepNumber(step);
+  setXIsNext(step % 2 === 0);
+};
+
+const isAllChecked = (squares) => {
+  let isAllChecked = true;
+  squares.forEach((square) => {
+    if (square == null) {
+      isAllChecked = false;
+      return false;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
-    this.setState({
-      history: history.concat([
-        {
-          squares: squares,
-        },
-      ]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+  });
+
+  return isAllChecked;
+};
+
+export default function Game() {
+  const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
+  const [stepNumber, setStepNumber] = useState(0);
+  const [xIsNext, setXIsNext] = useState(true);
+  const firstPlayer = localStorage.getItem("firstPlayer");
+  const secondPlayer = localStorage.getItem("secondPlayer");
+
+  let status;
+  const current = history[stepNumber];
+  const winner = calculateWinner(current.squares);
+
+  if (winner) {
+    status =
+      (winner.toLowerCase() === "x" ? firstPlayer : secondPlayer) + " Winner!";
+  } else if (isAllChecked(current.squares)) {
+    status = "Game Over!";
+  } else {
+    status = `Next player is ${xIsNext ? firstPlayer : secondPlayer}`;
   }
 
-  jumpTo(step) {
-    this.setState({
-      stepNumber: step,
-      xIsNext: step % 2 === 0,
-    });
-  }
-
-  getFirstPlayerName() {
-    return localStorage.getItem("firstPlayer");
-  }
-
-  getSecondPlayerName() {
-    return localStorage.getItem("secondPlayer");
-  }
-
-  isAllChecked(squares) {
-    let isAllChecked = true;
-    squares.forEach((square) => {
-      if (square == null) {
-        isAllChecked = false;
-        return false;
-      }
-    });
-
-    return isAllChecked;
-  }
-
-  render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
-
-    let status;
-    if (winner) {
-      status =
-        (winner.toString().toLowerCase() === "x"
-          ? this.state.firstPlayer
-          : this.state.secondPlayer) + " Winner!";
-    } else if (this.isAllChecked(current.squares)) {
-      status = "Game Over!";
-    } else {
-      status =
-        "Next player is " +
-        (this.state.xIsNext ? this.state.firstPlayer : this.state.secondPlayer);
-    }
-
-    return (
-      <div className="game container">
-        <div className="row">
-          <div className="col-sm-12 col-md-12 col-lg-8">
-            <div className="card box-shadown mt-3">
-              <div className="card-body">
-                <div className="card-text text-center">
-                  <h4
-                    className={
-                      status.toString().includes("Winner")
-                        ? "text-success"
-                        : status.toString().includes("Game Over")
-                        ? "text-danger"
-                        : ""
-                    }
-                  >
-                    {status}
-                  </h4>
-                </div>
+  return (
+    <div className="game container">
+      <div className="row">
+        <div className="col-sm-12 col-md-12 col-lg-8">
+          <div className="card box-shadown mt-3">
+            <div className="card-body">
+              <div className="card-text text-center">
+                <h4
+                  className={
+                    status.includes("Winner")
+                      ? "text-success"
+                      : status.includes("Game Over")
+                      ? "text-danger"
+                      : ""
+                  }
+                >
+                  {status}
+                </h4>
               </div>
             </div>
-            <Board
-              squares={current.squares}
-              onClick={(i) => this.handleClick(i)}
-            />
           </div>
-          <TimeTravel value={history} onClick={(step) => this.jumpTo(step)} />
+          <Board
+            squares={current.squares}
+            onClick={(index) =>
+              handleClick(
+                index,
+                history,
+                xIsNext,
+                stepNumber,
+                setHistory,
+                setStepNumber,
+                setXIsNext
+              )
+            }
+          />
         </div>
+        <TimeTravel
+          value={history}
+          onClick={(step) => jumpTo(step, setStepNumber, setXIsNext)}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default Game;

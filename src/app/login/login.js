@@ -25,7 +25,7 @@ const alert = (showAlert) => {
   );
 };
 
-function Login() {
+export default function Login() {
   const [firstPlayer, setFirstPlayer] = useState("");
   const [secondPlayer, setSecondPlayer] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -79,5 +79,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

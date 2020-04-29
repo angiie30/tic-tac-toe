@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import isAuthenticated from "./auth";
 
-function UnAuthGuard({ children, ...rest }) {
+export default function UnAuthGuard({ children, ...rest }) {
   return (
     <Route
       {...rest}
@@ -21,5 +21,3 @@ function UnAuthGuard({ children, ...rest }) {
     />
   );
 }
-
-export default UnAuthGuard;
