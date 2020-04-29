@@ -7,12 +7,12 @@ import {
   // useRouteMatch,
   // useParams,
 } from "react-router-dom";
-import AuthGuard from "./guard/Auth";
-import UnAuthGuard from "./guard/Unauth";
+import AuthGuard from "./guard/auth";
+import UnAuthGuard from "./guard/unauth";
 
-import Game from "./game/Game";
-import NavBar from "../shared/NavBar";
-import Login from "./login/Login";
+import Game from "./game/game";
+import NavBar from "../shared/navBar";
+import Login from "./login/login";
 
 export const App = () => {
   return (

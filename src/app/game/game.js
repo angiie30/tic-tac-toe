@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Board from "./Board";
-import TimeTravel from "./TimeTravel";
+import Board from "./board";
+import TimeTravel from "./timeTravel";
 import calculateWinner from "./winner";
 
 const handleClick = (
