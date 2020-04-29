@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Board from "./Board";
 import TimeTravel from "./TimeTravel";
 import calculateWinner from "./winner";
+import StartNewGame from "./StartNewGame";
 
 const handleClick = (
   index,
@@ -50,6 +51,12 @@ const isAllChecked = (squares) => {
   return isAllChecked;
 };
 
+const startNewGame = (winner, setHistory, setStepNumber, setXIsNext) => {
+  setHistory([{ squares: Array(9).fill(null) }]);
+  setStepNumber(0);
+  setXIsNext(winner.toLowerCase() === "x");
+};
+
 export const Game = () => {
   const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
   const [stepNumber, setStepNumber] = useState(0);
@@ -63,7 +70,7 @@ export const Game = () => {
 
   if (winner) {
     status =
-      (winner.toLowerCase() === "x" ? firstPlayer : secondPlayer) + " Winner!";
+      (winner.toLowerCase() === "x" ? firstPlayer : secondPlayer) + " Won!";
   } else if (isAllChecked(current.squares)) {
     status = "Game Over!";
   } else {
@@ -79,7 +86,7 @@ export const Game = () => {
               <div className="card-text text-center">
                 <h4
                   className={
-                    status.includes("Winner")
+                    status.includes("Won")
                       ? "text-success"
                       : status.includes("Game Over")
                       ? "text-danger"
@@ -106,6 +113,12 @@ export const Game = () => {
             }
           />
         </div>
+        <StartNewGame
+          value={status}
+          onClick={() =>
+            startNewGame(winner, setHistory, setStepNumber, setXIsNext)
+          }
+        />
         <TimeTravel
           value={history}
           onClick={(step) => jumpTo(step, setStepNumber, setXIsNext)}
