@@ -1,7 +1,7 @@
 import React from "react";
-import Square from "./square";
+import Square from "./Square";
 
-export default function Board(props) {
+export const Board = (props) => {
   return (
     <div className="game-board card box-shadown mt-3">
       <div className="card-body">
@@ -17,4 +17,6 @@ export default function Board(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Board;

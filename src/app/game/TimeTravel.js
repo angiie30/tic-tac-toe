@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TimeTravel(props) {
+export const TimeTravel = (props) => {
   const history = props.value;
 
   const moves = history.map((step, move) => {
@@ -32,4 +32,6 @@ export default function TimeTravel(props) {
         </div>
       </div>
     );
-}
+};
+
+export default TimeTravel;

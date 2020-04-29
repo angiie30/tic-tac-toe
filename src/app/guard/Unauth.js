@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import isAuthenticated from "./auth";
+import isAuthenticated from "./isAuthenticated";
 
-export default function UnAuthGuard({ children, ...rest }) {
+export const UnAuthGuard = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -20,4 +20,6 @@ export default function UnAuthGuard({ children, ...rest }) {
       }
     />
   );
-}
+};
+
+export default UnAuthGuard;

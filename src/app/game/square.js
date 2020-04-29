@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Square(props) {
+export const Square = (props) => {
   return (
     <button
       type="button"
@@ -17,4 +17,6 @@ export default function Square(props) {
       {props.value}
     </button>
   );
-}
+};
+
+export default Square;

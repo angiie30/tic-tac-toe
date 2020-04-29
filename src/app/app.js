@@ -7,14 +7,14 @@ import {
   // useRouteMatch,
   // useParams,
 } from "react-router-dom";
-import AuthGuard from "./guard/auth-guard";
-import UnAuthGuard from "./guard/unauth-guard";
+import AuthGuard from "./guard/Auth";
+import UnAuthGuard from "./guard/Unauth";
 
-import Game from "./game/game";
+import Game from "./game/Game";
 import NavBar from "../shared/NavBar";
-import Login from "./login/login";
+import Login from "./login/Login";
 
-export default function App() {
+export const App = () => {
   return (
     <Router>
       <NavBar />
@@ -31,4 +31,6 @@ export default function App() {
       </Switch>
     </Router>
   );
-}
+};
+
+export default App;

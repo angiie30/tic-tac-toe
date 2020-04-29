@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/img/logo.png";
 
-export default function NavBar() {
+export const NavBar = () => {
   return (
     <div className="nav-bar">
       <nav className="navbar navbar-dark bg-primary">
@@ -18,4 +18,6 @@ export default function NavBar() {
       </nav>
     </div>
   );
-}
+};
+
+export default NavBar;

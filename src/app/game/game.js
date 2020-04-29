@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Board from "./board";
-import TimeTravel from "./time-travel";
+import Board from "./Board";
+import TimeTravel from "./TimeTravel";
 import calculateWinner from "./winner";
 
 const handleClick = (
@@ -50,7 +50,7 @@ const isAllChecked = (squares) => {
   return isAllChecked;
 };
 
-export default function Game() {
+export const Game = () => {
   const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
@@ -113,4 +113,6 @@ export default function Game() {
       </div>
     </div>
   );
-}
+};
+
+export default Game;
