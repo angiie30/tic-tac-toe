@@ -4,9 +4,12 @@ import * as serviceWorker from "./serviceWorker";
 
 //css
 import "./assets/scss/custom.scss";
-
 import "./index.css";
 
+//js
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
+//component
 import App from "./app/App";
 
 ReactDOM.render(

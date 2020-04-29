@@ -8,8 +8,12 @@ export const Board = (props) => {
         <div className="board-row row mt-3">
           {props.squares.map((square, index) => {
             return (
-              <div className="col-4 mb-3">
-                <Square value={square} onClick={() => props.onClick(index)} />
+              <div className="col-4 mb-3" key={index}>
+                <Square
+                  key={index}
+                  value={square}
+                  onClick={() => props.onClick(index)}
+                />
               </div>
             );
           })}

@@ -64,7 +64,7 @@ export const Login = () => {
                 {renderRedirect(redirect)}
                 <button
                   type="button"
-                  className="btn btn-secondary btn-block text-white"
+                  className="btn btn-primary btn-block text-white"
                   onClick={() =>
                     save(firstPlayer, secondPlayer, setShowAlert, setRedirect)
                   }
