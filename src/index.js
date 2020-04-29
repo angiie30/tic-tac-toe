@@ -10,7 +10,7 @@ import "./index.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 //component
-import App from "./app/app";
+import App from "./app/App";
 
 ReactDOM.render(
   <React.StrictMode>
