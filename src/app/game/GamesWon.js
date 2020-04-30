@@ -17,7 +17,7 @@ const increaseWinnerPlays = (winner) => {
   setPlayers(players);
 };
 
-export const PlaysWon = (props) => {
+export const GamesWon = (props) => {
   if (props.status.includes("Won") || props.status.includes("Game Over")) {
     increaseWinnerPlays(props.winner);
   }
@@ -31,7 +31,7 @@ export const PlaysWon = (props) => {
           className="list-group-item disabled text-center"
           aria-disabled="true"
         >
-          Plays Won
+          Games Won
         </li>
         <li
           className={
@@ -57,4 +57,4 @@ export const PlaysWon = (props) => {
   );
 };
 
-export default PlaysWon;
+export default GamesWon;

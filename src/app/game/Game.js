@@ -3,7 +3,7 @@ import Board from "./Board";
 import TimeTravel from "./TimeTravel";
 import calculateWinner from "./winner";
 import StartNewGame from "./StartNewGame";
-import PlaysWon from "./PlaysWon";
+import GamesWon from "./GamesWon";
 import { getPlayers } from "../../shared/localStorage";
 
 const handleClick = (
@@ -72,7 +72,7 @@ export const Game = () => {
   if (winner) {
     status =
       (winner.toLowerCase() === "x" ? players[0].name : players[1].name) +
-      " Won!";
+      " Wins!";
   } else if (isAllChecked(current.squares)) {
     status = "Game Over!";
   } else {
@@ -90,7 +90,7 @@ export const Game = () => {
                   <div className="card-text text-center">
                     <h4
                       className={
-                        status.includes("Won")
+                        status.includes("Wins")
                           ? "text-success"
                           : status.includes("Game Over")
                           ? "text-danger"
@@ -133,7 +133,7 @@ export const Game = () => {
         <div className="col-sm-12 col-md-12 col-lg-4">
           <div className="row">
             <div className="col-12">
-              <PlaysWon status={status} winner={winner} />
+              <GamesWon status={status} winner={winner} />
             </div>
             <div className="col-12">
               <TimeTravel

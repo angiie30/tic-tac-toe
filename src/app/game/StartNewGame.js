@@ -1,7 +1,7 @@
 import React from "react";
 
 export const StartNewGame = (props) => {
-  if (!props.status.includes("Won") && !props.status.includes("Game Over"))
+  if (!props.status.includes("Wins") && !props.status.includes("Game Over"))
     return "";
   else {
     return (
