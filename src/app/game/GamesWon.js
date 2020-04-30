@@ -18,7 +18,7 @@ const increaseWinnerPlays = (winner) => {
 };
 
 export const GamesWon = (props) => {
-  if (props.status.includes("Won") || props.status.includes("Game Over")) {
+  if (props.status.includes("Wins")) {
     increaseWinnerPlays(props.winner);
   }
 
