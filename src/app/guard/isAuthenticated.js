@@ -1,13 +1,9 @@
-export const isAuthenticated = () => {
-  const firstPlayerName = localStorage.getItem("firstPlayer");
-  const secondPlayerName = localStorage.getItem("secondPlayer");
+import { getPlayers } from "../../shared/localStorage";
 
-  return (
-    firstPlayerName !== null &&
-    secondPlayerName !== null &&
-    firstPlayerName !== "" &&
-    secondPlayerName !== ""
-  );
+export const isAuthenticated = () => {
+  const players = getPlayers();
+
+  return players !== undefined && players !== null;
 };
 
 export default isAuthenticated;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { setPlayers } from "../../shared/localStorage";
 
 const renderRedirect = (redirect) => {
   if (redirect) {
@@ -8,8 +9,16 @@ const renderRedirect = (redirect) => {
 };
 
 const save = (firstPlayer, secondPlayer, setShowAlert, setRedirect) => {
-  localStorage.setItem("firstPlayer", firstPlayer);
-  localStorage.setItem("secondPlayer", secondPlayer);
+  setPlayers([
+    {
+      name: firstPlayer,
+      playsWon: 0,
+    },
+    {
+      name: secondPlayer,
+      playsWon: 0,
+    },
+  ]);
 
   if (firstPlayer === "" && secondPlayer === "") setShowAlert(true);
   else setRedirect(true);

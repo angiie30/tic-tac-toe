@@ -1,3 +1,5 @@
+@import "./bootstrap/_variables";
+
 .square {
   min-height: 95px;
 }
@@ -8,4 +10,9 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.secondPlayerActive {
+  background-color: $accent-color !important;
+  border-color: $accent-color !important;
 }
